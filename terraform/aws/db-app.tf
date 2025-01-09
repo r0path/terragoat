@@ -244,6 +244,7 @@ resource "aws_instance" "db_app" {
   # ec2 have plain text secrets in user data
   ami                  = data.aws_ami.amazon-linux-2.id
   instance_type        = "t2.nano"
+  monitoring           = true
   iam_instance_profile = aws_iam_instance_profile.ec2profile.name
 
   vpc_security_group_ids = [
