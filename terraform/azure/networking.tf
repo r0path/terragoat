@@ -129,8 +129,15 @@ resource azurerm_network_watcher_flow_log "flow_log" {
   resource_group_name       = azurerm_resource_group.example.name
   storage_account_id        = azurerm_storage_account.example.id
   retention_policy {
-    enabled = false
-    days    = 10
+    enabled = true
+    days    = 90
+  }
+  traffic_analytics {
+    enabled               = true
+    workspace_id          = azurerm_log_analytics_workspace.example.workspace_id
+    workspace_region      = azurerm_resource_group.example.location
+    workspace_resource_id = azurerm_log_analytics_workspace.example.id
+    interval_in_minutes   = 10
   }
   tags = {
     git_commit           = "898d5beaec7ffdef6df0d7abecff407362e2a74e"
